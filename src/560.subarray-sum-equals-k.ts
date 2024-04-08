@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-function subarraySum(nums: number[], k: number): number {
+export function subarraySum(nums: number[], k: number): number {
 	/**
 	 * Input: nums = [1,1,1], k = 2
 	 * Output: 2
