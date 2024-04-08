@@ -1,0 +1,16 @@
+{
+  "name": "fucking-algorithm",
+  "version": "1.0.0",
+  "description": "by labuladong.github.io/algo/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.4.4",
+    "vitest": "^1.4.0"
+  }
+}
