@@ -11,31 +11,42 @@ function coinChange(coins: number[], amount: number): number {
 	// 解释：11 = 5 + 5 + 1
 	// 输入：coins = [2], amount = 3
 	// 输出：-1
-	let memos: number[] = new Array(amount + 1).fill(-999)
 
-	function dp(coins: number[], amount: number): number {
-		// [1, 2, 5] 11
-		if (amount == 0) return 0
-		if (amount < 0) return -1
+	// 自底向上
 
-		if (memos[amount] !== -999) {
-			return memos[amount]
+	/**
+	 *
+	 * dp0
+	 * [0]
+	 *
+	 * dp0 dp1
+	 * dp1 = min(dp0 + dp-1 + dp-4) + 1
+	 * [0, 1]
+	 *
+	 *
+	 * [2] 3
+	 *
+	 * [0, 4, 4]
+	 *
+	 *
+	 */
+
+	let dptbale: number[] = new Array(amount + 1).fill(amount + 1)
+
+	dptbale[0] = 0
+
+	for (let i = 1; i <= amount; i++) {
+		// dptable[i]
+		for (let j = 0; j < coins.length; j++) {
+			// coins[j]
+			let currentDp = i - coins[j]
+			if (currentDp < 0) continue
+
+			dptbale[i] = Math.min(1 + dptbale[i - coins[j]], dptbale[i])
 		}
-
-		let res = Infinity
-
-		for (let i = 0; i < coins.length; i++) {
-			let subProblem = dp(coins, amount - coins[i])
-			if (subProblem == -1) continue
-			res = Math.min(subProblem + 1, res)
-		}
-
-		memos[amount] = res === Infinity ? -1 : res
-
-		return memos[amount]
 	}
 
-	return dp(coins, amount)
+	return dptbale[amount] === amount + 1 ? -1 : dptbale[amount]
 }
 
 // @lc code=end
