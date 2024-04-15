@@ -18,7 +18,7 @@ function combinationSum(candidates: number[], target: number): number[][] {
 	let temp: number[] = []
 	let tempSum: number = 0
 
-	function backTrack() {
+	function backTrack(start: number) {
 		if (tempSum === target) {
 			resultList.push([...temp])
 			return
@@ -28,21 +28,18 @@ function combinationSum(candidates: number[], target: number): number[][] {
 			return
 		}
 
-		for (let i = 0; i < candidates.length; i++) {
-			let preLastNum = temp[temp.length - 1]
-			if (candidates[i] < preLastNum) continue
-
+		for (let i = start; i < candidates.length; i++) {
 			temp.push(candidates[i])
 			tempSum += candidates[i]
 
-			backTrack()
+			backTrack(i)
 
 			temp.pop()
 			tempSum -= candidates[i]
 		}
 	}
 
-	backTrack()
+	backTrack(0)
 
 	return resultList
 }
