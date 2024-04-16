@@ -1,6 +1,6 @@
 import { updateMatrix } from '../../542.01-矩阵'
 
-describe('first', () => {
+describe('updateMatrix test', () => {
 	it('updateMatrix', () => {
 		expect(
 			updateMatrix([
