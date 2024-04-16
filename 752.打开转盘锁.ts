@@ -67,36 +67,42 @@ function openLock(deadends: string[], target: string): number {
 
 	let step = 0
 
-	let queue: string[] = []
+	let queue = new Set<string>()
+	let queue2 = new Set<string>()
 	let visited = new Set<string>()
 
-	queue.push(str)
-	visited.add(str)
+	queue.add(str)
 
-	while (queue.length) {
-		let l = queue.length
-		for (let i = 0; i < l; i++) {
-			let cur = queue.shift()!
+	queue2.add(target)
+
+	while (queue.size && queue2.size) {
+		let temp = new Set<string>()
+
+		for (const cur of queue) {
 			if (deads.has(cur)) continue
 
 			//
-			if (cur === target) return step
+			if (queue2.has(cur)) return step
+
+			visited.add(cur)
 
 			//
 			for (let j = 0; j < cur.length; j++) {
 				let forwardStr = forword(cur, j)
 				if (!visited.has(forwardStr)) {
-					queue.push(forwardStr)
-					visited.add(forwardStr)
+					temp.add(forwardStr)
 				}
 
 				let backwordStr = backword(cur, j)
 				if (!visited.has(backwordStr)) {
-					queue.push(backwordStr)
-					visited.add(backwordStr)
+					temp.add(backwordStr)
 				}
 			}
 		}
+
+		queue = queue2
+		queue2 = temp
+
 		step++
 	}
 
