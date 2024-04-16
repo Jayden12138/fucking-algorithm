@@ -32,18 +32,15 @@ class TreeNode {
 function minDepth(root: TreeNode | null): number {
 	// 输入：root = [3,9,20,null,null,15,7]
 	// 输出：2
-
 	if (!root) {
 		return 0
 	}
 
-	let queue = [root]
-	let visited = new Set()
-	let step = 0
+	let queue: TreeNode[] = []
+	let depth: number = 0
 
 	queue.push(root)
-	visited.add(root)
-	step++
+	depth++
 
 	while (queue.length > 0) {
 		let queueLength = queue.length
@@ -51,13 +48,10 @@ function minDepth(root: TreeNode | null): number {
 		for (let i = 0; i < queueLength; i++) {
 			let currentNode = queue.shift()
 
-			// currentNode === targetNode
 			if (currentNode?.left === null && currentNode.right === null) {
-				// 叶子节点
-				return step
+				return depth
 			}
 
-			// 四周扩散
 			if (currentNode?.left) {
 				queue.push(currentNode.left)
 			}
@@ -66,10 +60,9 @@ function minDepth(root: TreeNode | null): number {
 				queue.push(currentNode.right)
 			}
 		}
-		step++
+		depth++
 	}
 
-	// 到这里说明没有找到目标节点
 	return -1
 }
 // @lc code=end
