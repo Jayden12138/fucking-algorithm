@@ -8,20 +8,17 @@
 function updateMatrix(mat: number[][]): number[][] {
 	// 输入：mat = [[0,0,0],[0,1,0],[1,1,1]]
 	// 输出：[[0,0,0],[0,1,0],[1,2,1]]
+	let m = mat.length
+	let n = mat[0].length
 
-	let rowLen = mat.length
-	let colLen = mat[0].length
-
-	// 初始化 -1
-	let resultList: number[][] = new Array(rowLen)
+	let resultList: number[][] = new Array(m)
 		.fill(0)
-		.map(() => new Array(colLen).fill(-1))
+		.map(() => new Array(n).fill(-1))
 
 	let queue: number[][] = []
 
-	// 填入0
-	for (let i = 0; i < rowLen; i++) {
-		for (let j = 0; j < colLen; j++) {
+	for (let i = 0; i < m; i++) {
+		for (let j = 0; j < n; j++) {
 			if (mat[i][j] === 0) {
 				resultList[i][j] = 0
 				queue.push([i, j])
@@ -35,22 +32,23 @@ function updateMatrix(mat: number[][]): number[][] {
 		[1, 0],
 		[-1, 0],
 	]
-	while (queue.length > 0) {
+
+	while (queue.length) {
 		let [curI, curJ] = queue.shift()!
 
-		dirs.forEach(dir => {
-			let nextI = dir[0] + curI
-			let nextJ = dir[1] + curJ
+		dirs.forEach(([i, j]) => {
+			let nextI = curI + i
+			let nextJ = curJ + j
 
 			if (
 				nextI >= 0 &&
-				nextI < rowLen &&
+				nextI < m &&
 				nextJ >= 0 &&
-				nextJ < colLen &&
+				nextJ < n &&
 				resultList[nextI][nextJ] === -1
 			) {
-				queue.push([nextI, nextJ])
 				resultList[nextI][nextJ] = resultList[curI][curJ] + 1
+				queue.push([nextI, nextJ])
 			}
 		})
 	}
