@@ -1,5 +1,5 @@
-import { carPooling } from '../1094.car-pooling'
-
+import { carPooling } from '@/1094.car-pooling'
+import { describe, expect, it } from 'bun:test'
 describe('first', () => {
 	it('should be false', () => {
 		expect(

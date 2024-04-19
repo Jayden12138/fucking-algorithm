@@ -1,5 +1,5 @@
-import { updateMatrix } from '../../542.01-矩阵'
-
+import { updateMatrix } from '@/542.01-矩阵'
+import { describe, expect, it } from 'bun:test'
 describe('updateMatrix test', () => {
 	it('updateMatrix', () => {
 		expect(

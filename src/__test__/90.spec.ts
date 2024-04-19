@@ -1,5 +1,5 @@
-import { subsetsWithDup } from '../../90.子集-ii'
-
+import { subsetsWithDup } from '@/90.子集-ii'
+import { describe, expect, it } from 'bun:test'
 describe('first', () => {
 	it('subsetsWithDup', () => {
 		expect(subsetsWithDup([1, 2, 2])).toEqual([
@@ -19,6 +19,7 @@ describe('first', () => {
 			[1, 4],
 			[1, 4, 4],
 			[1, 4, 4, 4],
+			[1, 4, 4, 4, 4],
 			[4],
 			[4, 4],
 			[4, 4, 4],

@@ -1,5 +1,5 @@
-import { openLock } from '../../752.打开转盘锁'
-
+import { openLock } from '@/752.打开转盘锁'
+import { describe, expect, it } from 'bun:test'
 describe('openLock test', () => {
 	it('openLock 1', () => {
 		expect(openLock(['0201', '0101', '0102', '1212', '2002'], '0202')).toBe(

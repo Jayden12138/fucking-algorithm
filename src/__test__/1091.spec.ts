@@ -1,5 +1,5 @@
-import { shortestPathBinaryMatrix } from '../../1091.二进制矩阵中的最短路径'
-
+import { shortestPathBinaryMatrix } from '@/1091.二进制矩阵中的最短路径'
+import { describe, expect, it } from 'bun:test'
 describe('shortestPathBinaryMatrix test', () => {
 	it('shortestPathBinaryMatrix 1', () => {
 		expect(
