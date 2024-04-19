@@ -1,5 +1,5 @@
-import { corpFlightBookings } from '../1109.corporate-flight-bookings'
-
+import { corpFlightBookings } from '@/1109.corporate-flight-bookings'
+import { describe, expect, it } from 'bun:test'
 describe('first', () => {
 	it('corpFlightBookings', () => {
 		expect(

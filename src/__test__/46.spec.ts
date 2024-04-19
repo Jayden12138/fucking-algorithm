@@ -1,4 +1,5 @@
-import { permute } from '../../46.全排列'
+import { permute } from '@/46.全排列'
+import { describe, expect, it } from 'bun:test'
 
 describe('first', () => {
 	it('permute', () => {

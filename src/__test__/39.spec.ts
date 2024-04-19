@@ -1,4 +1,5 @@
-import { combinationSum } from '../../39.组合总和'
+import { combinationSum } from '@/39.组合总和'
+import { describe, expect, it } from 'bun:test'
 
 describe('first', () => {
 	it('combinationSum', () => {

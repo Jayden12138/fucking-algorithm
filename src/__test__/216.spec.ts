@@ -1,5 +1,5 @@
-import { combinationSum3 } from '../../216.组合总和-iii'
-
+import { combinationSum3 } from '@/216.组合总和-iii'
+import { describe, expect, it } from 'bun:test'
 describe('first', () => {
 	it('combinationSum3', () => {
 		expect(combinationSum3(3, 9)).toEqual([

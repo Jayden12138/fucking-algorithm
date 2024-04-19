@@ -1,5 +1,5 @@
-import { coinChange } from '../../322.零钱兑换'
-
+import { coinChange } from '@/322.零钱兑换'
+import { describe, expect, it } from 'bun:test'
 describe('322.零钱兑换', () => {
 	it('coinChange', () => {
 		// expect(coinChange([1, 2, 5], 11)).toBe(3)

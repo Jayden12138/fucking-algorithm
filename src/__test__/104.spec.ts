@@ -1,5 +1,5 @@
-import { maxDepth, TreeNode } from '../../104.二叉树的最大深度'
-
+import { maxDepth, TreeNode } from '@/104.二叉树的最大深度'
+import { describe, expect, it } from 'bun:test'
 describe('first', () => {
 	it('maxDepth 1', () => {
 		const root = new TreeNode(
