@@ -55,47 +55,28 @@ import { TreeNode } from '@/types'
 // findElements.find(2); // return True
 
 class FindElements {
-	private _root: TreeNode
 	private _valMap = new Set<number>()
 	constructor(root: TreeNode | null) {
-		if (root) {
-			this._root = root
-			this._root.val = 0
-			this._valMap.add(this._root.val)
-
-			// recover
-			this.recover(this._root)
-		} else {
-			this._root = new TreeNode(-1)
-		}
+		// recover
+		this.recover(root, 0)
 	}
 
 	find(target: number): boolean {
 		return this._valMap.has(target)
 	}
 
-	recover(root: TreeNode | null) {
+	recover(root: TreeNode | null, value: number) {
 		// [-1,-1,-1,-1,-1]
 
-		if (root) {
-			if (root.left) {
-				// 2x + 1
-				root.left.val = root.val * 2 + 1
-				this._valMap.add(root.left.val)
-
-				this.recover(root.left)
-			}
-
-			if (root.right) {
-				// 2x + 2
-				root.right.val = root.val * 2 + 2
-				this._valMap.add(root.right.val)
-
-				this.recover(root.right)
-			}
-		} else {
+		if (!root) {
 			return
 		}
+
+		root.val = value
+		this._valMap.add(value)
+
+		this.recover(root.left, root.val * 2 + 1)
+		this.recover(root.right, root.val * 2 + 2)
 	}
 }
 
