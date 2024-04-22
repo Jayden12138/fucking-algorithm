@@ -1,3 +1,5 @@
-export function addNum(a: number, b: number) {
+function addNum(a: number, b: number) {
 	return a + b
 }
+
+export { addNum }
