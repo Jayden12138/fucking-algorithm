@@ -87,7 +87,7 @@ class DMaxPQ {
 		// 需要和左、右两个节点进行对比
 		// 默认：左子节点 值大于 父级
 		// 这里需要一直下沉到队尾 且 左子节点存在（因为默认左子节点大于父级）
-		while (x < this.size() && this.getLeftChildIndex(x) < this.size()) {
+		while (x < this.size() && this.getLeftChildIndex(x) <= this.size()) {
 			// 1. 默认左子节点 最大（在三者：父级、左子节点、右子节点中）
 			let max = this.getLeftChildIndex(x)
 
