@@ -16,28 +16,58 @@ import { ListNode } from './types'
  *     }
  * }
  */
-let left
 function isPalindrome(head: ListNode | null): boolean {
 	// 输入：head = [1,2,2,1]
 	// 输出：true
 	//
 	// 输入：head = [1,2]
 	// 输出：false
-	left = head
+	// 快慢指针找中点
+	// 反转链表
+	// 双指针对比两链表
+	let left = head
+	let right = reverse(getMid(head))
 
-	return reverse(head)
+	while (right) {
+		if (left?.val === right.val) {
+			left = left?.next
+			right = right.next
+		} else {
+			return false
+		}
+	}
+	return true
 }
 function reverse(head: ListNode | null) {
-	if (!head) {
-		return true
+	// 1.
+
+	let cur = head
+	let prev: ListNode | null = null
+
+	while (cur) {
+		let next = cur.next
+		cur.next = prev
+		prev = cur
+		cur = next
 	}
 
-	// 前序
-	let res = reverse(head.next)
-	//后序 倒叙
-	res = res && head.val === left!.val
-	left = left!.next
-	return res
+	return prev
+
+	// 2. 递归
+}
+function getMid(head: ListNode | null) {
+	let fast = head
+	let slow = head
+
+	while (fast && fast.next) {
+		fast = fast.next.next
+		slow = slow!.next
+	}
+
+	if (fast) {
+		slow = slow!.next
+	}
+	return slow
 }
 // @lc code=end
 export { isPalindrome }
