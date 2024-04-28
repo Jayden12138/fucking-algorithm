@@ -20,10 +20,11 @@ function moveZeroes(nums: number[]): void {
 
 	while (fast < nums.length) {
 		if (nums[fast] != 0) {
-			if (slow !== fast) {
-				nums[slow] = nums[fast]
-				nums[fast] = 0
-			}
+			// if (slow !== fast) {
+			// 	nums[slow] = nums[fast]
+			// 	nums[fast] = 0
+			// }
+			;[nums[slow], nums[fast]] = [nums[fast], nums[slow]]
 			slow++
 		}
 		fast++
