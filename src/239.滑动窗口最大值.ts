@@ -5,23 +5,52 @@
  */
 
 // @lc code=start
-// 递减
 class MonotonicQueue {
-	constructor(private _queue: number[] = []) {}
+	private _queue: number[] = []
+	private _maxqueue: number[] = []
+	private _minqueue: number[] = []
+	constructor() {}
 	push(n) {
-		while (this._queue.length && n > this._queue[this._queue.length - 1]) {
-			this._queue.pop()
+		while (
+			this._maxqueue.length &&
+			n > this._maxqueue[this._maxqueue.length - 1]
+		) {
+			this._maxqueue.pop()
+		}
+
+		while (
+			this._minqueue.length &&
+			n < this._minqueue[this._minqueue.length - 1]
+		) {
+			this._minqueue.pop()
 		}
 
 		this._queue.push(n)
+		this._maxqueue.push(n)
+		this._minqueue.push(n)
 	}
-	pop(n) {
-		if (this._queue[0] === n) {
-			this._queue.shift()
+	pop() {
+		let remove = this._queue[0]
+		this._queue.shift()
+		if (this._maxqueue[0] === remove) {
+			this._maxqueue.shift()
 		}
+		if (this._minqueue[0] === remove) {
+			this._minqueue.shift()
+		}
+		return remove
 	}
 	max() {
-		return this._queue[0]
+		return this._maxqueue[0]
+	}
+	min() {
+		return this._minqueue[0]
+	}
+	size() {
+		return this._queue.length
+	}
+	isEmpty() {
+		return this._queue.length === 0
 	}
 }
 function maxSlidingWindow(nums: number[], k: number): number[] {
@@ -43,7 +72,7 @@ function maxSlidingWindow(nums: number[], k: number): number[] {
 			res.push(queue.max())
 
 			// 窗口第一个移除
-			queue.pop(nums[i - k + 1])
+			queue.pop()
 		}
 	}
 
